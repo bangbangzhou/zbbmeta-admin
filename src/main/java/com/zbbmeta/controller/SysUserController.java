@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -45,7 +46,7 @@ public class SysUserController {
      */
     @ApiOperation(value = "新增用户", notes = "新增用户")
     @PostMapping("/insert")
-    public ResponseResult insert(@RequestBody SysUser userEntity) {
+    public ResponseResult insert(@RequestBody @Validated SysUser userEntity) {
 
         return    ResponseResultBuild.build(UserEnum.SUCCEED, userService.save(userEntity));
     }
