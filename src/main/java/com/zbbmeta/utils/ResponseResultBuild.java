@@ -29,7 +29,7 @@ public class ResponseResultBuild {
                 .operationTime(new Date())
 //                .userId(userVo.getId())
 //                .userName(userVo.getUsername())
-                .datas(t)
+                .data(t)
                 .build();
     }
 }

@@ -29,7 +29,7 @@ public class  ResponseResult<T> implements Serializable {
     private String msg;
 
     //返回结果
-    private T datas;
+    private T data;
 
     //操作用户
     private Long userId;
