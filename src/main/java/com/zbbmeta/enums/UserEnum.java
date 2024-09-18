@@ -11,6 +11,10 @@ public enum UserEnum implements IBasicEnum {
     SUCCEED("200","操作成功"),
     LOGOUT_SUCCEED("1004","退出成功"),
     FAIL("1000","操作失败"),
+
+
+    PARAM_EX("-3", "参数类型解析异常"),
+    BASE_VALID_PARAM("-9", "统一验证参数异常"),
     /**
      * 认证错误，不知道啥原因
      */

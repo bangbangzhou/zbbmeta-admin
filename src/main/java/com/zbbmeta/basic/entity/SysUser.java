@@ -6,8 +6,11 @@ import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Type;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zbbmeta.basic.BasePojo;
 import io.swagger.annotations.ApiModel;
@@ -27,8 +30,8 @@ public class SysUser extends BasePojo {
     /**
     * 用户ID
     */
-    @NotNull(message="[用户ID]不能为空")
     @ApiModelProperty("用户ID")
+    @TableId(type= IdType.ASSIGN_ID)
     private Long userId;
     /**
     * 部门ID
@@ -64,6 +67,7 @@ public class SysUser extends BasePojo {
     @Size(max= 50,message="编码长度不能超过50")
     @ApiModelProperty("用户邮箱")
     @Length(max= 50,message="编码长度不能超过50")
+    @NotBlank(message="[用户邮箱]不能为空")
     private String email;
     /**
     * 手机号码

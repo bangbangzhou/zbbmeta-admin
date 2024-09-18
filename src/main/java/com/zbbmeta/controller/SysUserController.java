@@ -32,8 +32,8 @@ public class SysUserController {
      * @return 用户信息
      */
     @ApiOperation(value = "根据ID查询用户信息", notes = "根据ID查询用户信息")
-    @GetMapping("/findById")
-    public ResponseResult findById(Long id) {
+    @GetMapping("/findById/{id}")
+    public ResponseResult findById(@PathVariable("id") Long id) {
         return ResponseResultBuild.build(UserEnum.SUCCEED,userService.getById(id));
     }
 
