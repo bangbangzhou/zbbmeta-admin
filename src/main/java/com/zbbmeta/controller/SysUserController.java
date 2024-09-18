@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class SysUserController {
      * @param id 系统ID
      * @return 用户信息
      */
+    @PreAuthorize("hasRole('User')")
     @ApiOperation(value = "根据ID查询用户信息", notes = "根据ID查询用户信息")
     @GetMapping("/findById/{id}")
     public ResponseResult findById(@PathVariable("id") Long id) {
