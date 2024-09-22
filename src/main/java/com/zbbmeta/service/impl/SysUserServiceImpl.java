@@ -15,6 +15,11 @@ import org.springframework.stereotype.Service;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     implements SysUserService{
 
+    @Override
+    public SysUser selectUserById(Long userId)
+    {
+        return baseMapper.selectUserById(userId);
+    }
 }
 
 

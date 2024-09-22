@@ -7,16 +7,27 @@ spring:
     url: jdbc:mysql://localhost:3306/admin_vue?useSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
-  security:
-    user:
-      password: 123456
-      name: zbbmeta
-    roles:
-      User
+#  security:
+#    user:
+#      password: 123456
+#      name: zbbmeta
+#    roles:
+#      User
 # mybatis-plus 自动配置
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.zbbmeta.entity
+  type-aliases-package: com.zbbmeta.basic.entity
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+jwt:
+  header: jwtHeader   #jwt的请求头
+  secret: 36c9060f2028b1e842d877877a68abe0   #jwt的加密字符串
+  expiration: 3600000   #jwt token有效时间（毫秒）
+  route:
+    login: /auth/login    #登录地址
+    refresh: /auth/refresh  #刷新token地址
+    register: /auth/register  #注册的地址
+    logout: /auth/logout  #注册的地址

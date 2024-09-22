@@ -32,11 +32,12 @@ public class SysUserController {
      * @param id 系统ID
      * @return 用户信息
      */
-    @PreAuthorize("hasRole('User')")
+//    @PreAuthorize("hasRole('User')")
+    @PreAuthorize("@meta.hasPermi('system:user:query')")
     @ApiOperation(value = "根据ID查询用户信息", notes = "根据ID查询用户信息")
     @GetMapping("/findById/{id}")
     public ResponseResult findById(@PathVariable("id") Long id) {
-        return ResponseResultBuild.build(UserEnum.SUCCEED,userService.getById(id));
+        return ResponseResultBuild.build(UserEnum.SUCCEED,userService.selectUserById(id));
     }
 
 

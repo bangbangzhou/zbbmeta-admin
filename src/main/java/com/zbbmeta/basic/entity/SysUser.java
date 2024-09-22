@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import java.lang.reflect.Type;
 import java.util.Date;
+import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -117,6 +118,18 @@ public class SysUser extends BasePojo {
     */
     @ApiModelProperty("最后登录时间")
     private Date loginDate;
+    private SysDept dept;
 
+    /** 角色对象 */
+    private List<SysRole> roles;
 
+    public boolean isAdmin()
+    {
+        return isAdmin(this.userId);
+    }
+
+    public static boolean isAdmin(Long userId)
+    {
+        return userId != null && 1L == userId;
+    }
 }
