@@ -18,6 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * @Author: springboot葵花宝典
@@ -107,4 +110,28 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
+    private CorsConfiguration buildConfig() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        //corsConfiguration.addAllowedOrigin("*");  在springboot2.4之后替换成addAllowedOriginPattern
+        //不然报错java.lang.IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly
+        // or consider using "allowedOriginPatterns" instead.
+        // 跨域配置报错，将.allowedOrigins替换成.allowedOriginPatterns即可。
+        // 设置允许跨域请求的域名
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.addAllowedHeader("*");
+        // 设置允许的方法
+        corsConfiguration.addAllowedMethod("*");
+        // 是否允许证书
+        corsConfiguration.setAllowCredentials(true);
+        // 跨域允许时间
+        corsConfiguration.setMaxAge(3600L);
+        return corsConfiguration;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildConfig());
+        return new CorsFilter(source);
+    }
 }
